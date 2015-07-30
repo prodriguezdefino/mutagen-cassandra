@@ -1,168 +1,176 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.toddfast.mutagen</groupId>
-	<artifactId>mutagen-cassandra</artifactId>
-	<version>0.4.2-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>com.toddfast.mutagen</groupId>
+    <artifactId>mutagen-cassandra</artifactId>
+    <version>0.4.2-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>toddfast-mutagen-cassandra</name>
+    <name>toddfast-mutagen-cassandra</name>
 
-	<description>Mutagen Cassandra is a framework (based on Mutagen) that
-		provides CQL schema versioning and mutation for Apache Cassandra.
-	</description>
+    <description>Mutagen Cassandra is a framework (based on Mutagen) that
+        provides CQL schema versioning and mutation for Apache Cassandra.
+    </description>
 
-	<url>https://github.com/toddfast/mutagen-cassandra</url>
-	<scm>
-		<url>https://github.com/toddfast/mutagen-cassandra</url>
-		<connection>scm:git:git@github.com:toddfast/mutagen-cassandra.git</connection>
-		<developerConnection>scm:git:git@github.com:toddfast/mutagen-cassandra.git</developerConnection>
-	</scm>
+    <url>https://github.com/toddfast/mutagen-cassandra</url>
+    <scm>
+        <url>https://github.com/toddfast/mutagen-cassandra</url>
+        <connection>scm:git:git@github.com:toddfast/mutagen-cassandra.git</connection>
+        <developerConnection>scm:git:git@github.com:toddfast/mutagen-cassandra.git</developerConnection>
+    </scm>
 
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<developers>
-		<developer>
-			<id>toddfast</id>
-			<name>Todd Fast</name>
-			<email>todd@toddfast.com</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <id>toddfast</id>
+            <name>Todd Fast</name>
+            <email>todd@toddfast.com</email>
+        </developer>
+    </developers>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.toddfast.mutagen</groupId>
-			<artifactId>mutagen</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-core</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.toddfast.mutagen</groupId>
+            <artifactId>mutagen</artifactId>
+            <version>0.3.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.datastax.cassandra</groupId>
+            <artifactId>cassandra-driver-core</artifactId>
+            <version>2.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.2.9.Final</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 	
-	<build>
-		<plugins>
-			<plugin>
-            	<artifactId>maven-compiler-plugin</artifactId>
-            	<configuration>
-                	<source>1.7</source>
-                	<target>1.7</target>
-            	</configuration>
-        	</plugin>
-			<plugin>
-			    <!-- Separates the unit tests from the integration tests. -->
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-surefire-plugin</artifactId>
-			    <configuration>
-			       <!-- Skip the default running of this plug-in (or everything is run twice...see below) -->
-			       <skip>true</skip>
-			       <!-- Show 100% of the lines from the stack trace (doesn't work) -->
-			       <trimStackTrace>false</trimStackTrace>
-			    </configuration>
-			    <executions>
-			       <execution>
-			          <id>unit-tests</id>
-			          <phase>test</phase>
-			          <goals>
-			             <goal>test</goal>
-			          </goals>
-			          <configuration>
-			                <!-- Never skip running the tests when the test phase is invoked -->
-			                <skip>false</skip>
-			             <includes>
-			                   <!-- Include unit tests within integration-test phase. -->
-			                <include>**/*Tests.java</include>
-			             </includes>
-			             <excludes>
-			               <!-- Exclude integration tests within (unit) test phase. -->
-			                <exclude>**/*IT.java</exclude>
-			            </excludes>
-			          </configuration>
-			       </execution>
-			       <execution>
-			          <id>integration-tests</id>
-			          <phase>integration-test</phase>
-			          <goals>
-			             <goal>test</goal>
-			          </goals>
-			          <configuration>
-			            <!-- Never skip running the tests when the integration-test phase is invoked -->
-			             <skip>false</skip>
-			             <includes>
-			               <!-- Include integration tests within integration-test phase. -->
-			               <include>**/*IT.java</include>
-			             </includes>
-			          </configuration>
-			       </execution>
-			    </executions>
-			  </plugin>
-			<plugin>
-        		<artifactId>maven-failsafe-plugin</artifactId>
-        		<version>2.7.1</version>
-        		<executions>
-          			<execution>
-            			<goals>
-              				<goal>integration-test</goal>
-              				<goal>verify</goal>
-            			</goals>
-          			</execution>
-        		</executions>
-      		</plugin>
-      		<plugin>
-        		<groupId>org.codehaus.mojo</groupId>
-        		<artifactId>cassandra-maven-plugin</artifactId>
-        		<version>2.0.0-1</version>
-        		<configuration>
-        			<nativeTransportPort>9042</nativeTransportPort>
-        			<startNativeTransport>true</startNativeTransport>
-          			<rpcPort>9160</rpcPort>
-          			<jmxPort>7199</jmxPort>
-          			<storagePort>7000</storagePort>
-          			<!-- Port contention for 8081, use different port -->
-          			<stopPort>18081</stopPort>
-        		</configuration>
-        		<executions>
-        			<execution>
-        				<goals>
-        					<goal>start</goal>
-        					<goal>stop</goal>
-        				</goals>
-        			</execution>
-        		</executions>
-      		</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Separates the unit tests from the integration tests. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <!-- Skip the default running of this plug-in (or everything is run twice...see below) -->
+                    <skip>true</skip>
+                    <!-- Show 100% of the lines from the stack trace (doesn't work) -->
+                    <trimStackTrace>false</trimStackTrace>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>unit-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Never skip running the tests when the test phase is invoked -->
+                            <skip>false</skip>
+                            <includes>
+                                <!-- Include unit tests within integration-test phase. -->
+                                <include>**/*Tests.java</include>
+                            </includes>
+                            <excludes>
+                                <!-- Exclude integration tests within (unit) test phase. -->
+                                <exclude>**/*IT.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>integration-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Never skip running the tests when the integration-test phase is invoked -->
+                            <skip>false</skip>
+                            <includes>
+                                <!-- Include integration tests within integration-test phase. -->
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.18.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cassandra-maven-plugin</artifactId>
+                <version>2.0.0-1</version>
+                <configuration>
+                    <nativeTransportPort>9042</nativeTransportPort>
+                    <startNativeTransport>true</startNativeTransport>
+                    <rpcPort>9160</rpcPort>
+                    <jmxPort>7199</jmxPort>
+                    <storagePort>7000</storagePort>
+                    <!-- Port contention for 8081, use different port -->
+                    <stopPort>18081</stopPort>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>start</goal>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

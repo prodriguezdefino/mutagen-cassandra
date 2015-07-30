@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FilenameUtils;
 import org.jboss.netty.util.internal.StringUtil;
 
 import com.datastax.driver.core.Statement;
